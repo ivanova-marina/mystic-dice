@@ -1,17 +1,17 @@
-import './App.css';
 import { Canvas } from '@react-three/fiber';
+import { DfourDie } from './components/Dice/DfourDie';
+import { OrbitControls } from '@react-three/drei';
 
 function App() {
   return (
-    <div id="canvas-container">
-      <Canvas>
-        <mesh>
-          <boxGeometry args={[2, 2, 2]} />
-          <meshPhongMaterial />
-        </mesh>
-        <ambientLight intensity={0.1} />
-        <directionalLight color="red" position={[0, 0, 5]} />
-      </Canvas>
+    <div id="canvas-container" className="h-dvh">
+      <div className="h-96">
+        <Canvas>
+          <directionalLight position={[0, 0, 2]} />
+          <DfourDie />
+          <OrbitControls enableZoom={true} />
+        </Canvas>
+      </div>
     </div>
   );
 }
