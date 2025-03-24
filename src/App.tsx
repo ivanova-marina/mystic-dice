@@ -5,12 +5,11 @@ import { OrbitControls } from '@react-three/drei';
 function App() {
   return (
     <div id="canvas-container" className="h-dvh">
-      <div className="w-96 h-96 mx-auto mt-24">
+      <div className="h-full mx-auto mt-24">
         <Canvas>
-          <ambientLight color="0x404040" intensity={0.7} />
-          <directionalLight position={[1, 0, -1]} intensity={0.7} />
+          <ambientLight intensity={3} />
           <DfourDie />
-          <OrbitControls enableZoom={false} />
+          <OrbitControls enableZoom={true} />
         </Canvas>
       </div>
     </div>

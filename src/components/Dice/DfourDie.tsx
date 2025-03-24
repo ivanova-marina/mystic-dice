@@ -1,8 +1,7 @@
+import { useGLTF } from '@react-three/drei';
+
 export function DfourDie() {
-  return (
-    <mesh position={[0, 0, 0]}>
-      <tetrahedronGeometry args={[2]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
-  );
+  const { scene } = useGLTF('models/D4.glb');
+
+  return <primitive object={scene} />;
 }
