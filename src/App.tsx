@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { DfourDie } from './components/Dice/DfourDie';
+import { Die } from './components/Dice/Die';
 import { OrbitControls } from '@react-three/drei';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <div className="h-full mx-auto mt-24">
         <Canvas>
           <ambientLight intensity={3} />
-          <DfourDie />
+          <Die url="models/D20.glb" />
           <OrbitControls enableZoom={true} />
         </Canvas>
       </div>
