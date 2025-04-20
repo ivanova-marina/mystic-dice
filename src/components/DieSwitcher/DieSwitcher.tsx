@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Die } from '../Dice/Die';
+import { DieButton } from '../DieButton/DieButton';
 
 const diceOptions = [
   { label: 'D4', url: 'models/D4.glb' },
@@ -20,12 +21,7 @@ export function DieSwitcher() {
     <div className="flex flex-col items-center space-y-4 mt-6">
       <div className="flex flex-wrap gap-2">
         {diceOptions.map((die) => (
-          <button
-            key={die.label}
-            onClick={() => setSelectedDie(die.url)}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer">
-            {die.label}
-          </button>
+          <DieButton key={die.label} label={die.label} onClick={() => setSelectedDie(die.url)} />
         ))}
       </div>
       <div className="w-full h-[400px]">
