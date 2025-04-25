@@ -1,0 +1,1 @@
+export { DieButton } from './DieButton';

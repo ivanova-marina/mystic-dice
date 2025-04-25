@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Die } from '../Dice/Die';
-import { DieButton } from '../DieButton/DieButton';
-import { RollButton } from '../RollButton/RollButton';
+import { Dice } from '../Dice';
+import { DieButton } from '../DieButton';
+import { RollButton } from '../RollButton';
 import { useDieRoll } from '../../hooks/useDieRoll';
 
 const diceOptions = [
@@ -30,7 +30,7 @@ export function DieSwitcher() {
       <div className="w-full h-[400px]">
         <Canvas>
           <ambientLight intensity={3} />
-          <Die url={selectedDie} rotation={rotation} />
+          <Dice url={selectedDie} rotation={rotation} />
           <OrbitControls enableZoom />
         </Canvas>
         <RollButton onRoll={rollDie} />
