@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Die } from '../Dice/Die';
 import { DieButton } from '../DieButton/DieButton';
 import { RollButton } from '../RollButton/RollButton';
+import { useDieRoll } from '../../hooks/useDieRoll';
 
 const diceOptions = [
   { label: 'D4', url: 'models/D4.glb' },
@@ -17,17 +18,7 @@ const diceOptions = [
 
 export function DieSwitcher() {
   const [selectedDie, setSelectedDie] = useState(diceOptions[0].url);
-  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
-
-  const rollDie = () => {
-    const randomRotation: [number, number, number] = [
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2
-    ];
-
-    setRotation(randomRotation);
-  };
+  const { rotation, rollDie } = useDieRoll();
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-6">
