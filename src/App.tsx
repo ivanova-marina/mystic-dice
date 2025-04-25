@@ -1,9 +1,9 @@
-import { DieSwitcher } from './components/DieSwitcher/DieSwitcher';
+import { RollArea } from './components/RollArea';
 
 function App() {
   return (
     <div id="canvas-container" className="h-dvh">
-      <DieSwitcher />
+      <RollArea />
     </div>
   );
 }

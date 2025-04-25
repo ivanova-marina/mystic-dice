@@ -16,7 +16,7 @@ const diceOptions = [
   { label: 'D20', url: 'models/D20.glb' }
 ];
 
-export function DieSwitcher() {
+export function RollArea() {
   const [selectedDie, setSelectedDie] = useState(diceOptions[0].url);
   const { rotation, rollDie } = useDieRoll();
 
@@ -27,7 +27,7 @@ export function DieSwitcher() {
           <DieButton key={die.label} label={die.label} onClick={() => setSelectedDie(die.url)} />
         ))}
       </div>
-      <div className="w-full h-[400px]">
+      <div className="w-full h-[400px] flex flex-col items-center">
         <Canvas>
           <ambientLight intensity={3} />
           <Dice url={selectedDie} rotation={rotation} />
