@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Die } from './Die';
+import { Dice } from './Dice';
 
-const meta: Meta<typeof Die> = {
-  component: Die,
+const meta: Meta<typeof Dice> = {
+  component: Dice,
   render: (args) => (
     <Canvas>
       <ambientLight intensity={3} />
-      <Die {...args} />
+      <Dice {...args} />
       <OrbitControls enableZoom={true} />
     </Canvas>
   )
 };
 
 export default meta;
-type Story = StoryObj<typeof Die>;
+type Story = StoryObj<typeof Dice>;
 
 export const DFour: Story = {
   args: {

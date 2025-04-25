@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Die } from '../Dice/Die';
-import { DieButton } from '../DieButton/DieButton';
-import { RollButton } from '../RollButton/RollButton';
+import { Dice } from '../Dice';
+import { DieButton } from '../DieButton';
+import { RollButton } from '../RollButton';
+import { useDieRoll } from '../../hooks/useDieRoll';
 
 const diceOptions = [
   { label: 'D4', url: 'models/D4.glb' },
@@ -15,19 +16,9 @@ const diceOptions = [
   { label: 'D20', url: 'models/D20.glb' }
 ];
 
-export function DieSwitcher() {
+export function RollArea() {
   const [selectedDie, setSelectedDie] = useState(diceOptions[0].url);
-  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
-
-  const rollDie = () => {
-    const randomRotation: [number, number, number] = [
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2
-    ];
-
-    setRotation(randomRotation);
-  };
+  const { rotation, rollDie } = useDieRoll();
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-6">
@@ -36,10 +27,10 @@ export function DieSwitcher() {
           <DieButton key={die.label} label={die.label} onClick={() => setSelectedDie(die.url)} />
         ))}
       </div>
-      <div className="w-full h-[400px]">
+      <div className="w-full h-[400px] flex flex-col items-center">
         <Canvas>
           <ambientLight intensity={3} />
-          <Die url={selectedDie} rotation={rotation} />
+          <Dice url={selectedDie} rotation={rotation} />
           <OrbitControls enableZoom />
         </Canvas>
         <RollButton onRoll={rollDie} />

@@ -3,11 +3,11 @@ import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import * as THREE from 'three';
 
-interface DieProps {
+interface DiceProps {
   url: string;
   rotation?: [number, number, number];
 }
-export function Die({ url, rotation = [0, 0, 0] }: DieProps) {
+export function Dice({ url, rotation = [0, 0, 0] }: DiceProps) {
   const dieRef = useRef<THREE.Mesh>(null);
   const currentRotation = useRef<[number, number, number]>([0, 0, 0]);
 
