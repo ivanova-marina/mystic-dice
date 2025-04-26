@@ -19,6 +19,15 @@ const diceOptions = [
 export function RollArea() {
   const [selectedDie, setSelectedDie] = useState(diceOptions[0]);
   const { rotation, result, rollDie } = useDieRoll(selectedDie.sides);
+  const [isRolling, setIsRolling] = useState<boolean>(false);
+
+  const handleRoll = () => {
+    setIsRolling(true);
+    setTimeout(() => {
+      rollDie();
+      setIsRolling(false);
+    }, 1000);
+  };
 
   return (
     <div className="flex flex-col items-center space-y-4 mt-6">
@@ -30,10 +39,10 @@ export function RollArea() {
       <div className="w-full h-[400px] flex flex-col items-center">
         <Canvas>
           <ambientLight intensity={3} />
-          <Dice url={selectedDie.url} rotation={rotation} />
+          <Dice url={selectedDie.url} rotation={rotation} isRolling={isRolling} />
           <OrbitControls enableZoom />
         </Canvas>
-        <RollButton onRoll={rollDie} />
+        <RollButton onRoll={handleRoll} />
         <p className="mt-4 text-lg">
           {result !== null ? `You rolled a ${result}` : `Roll the die!`}
         </p>
