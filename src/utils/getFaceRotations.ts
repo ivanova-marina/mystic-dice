@@ -9,12 +9,12 @@ export const getFaceRotations = (sides: number): Record<number, [number, number,
       };
     case 6:
       return {
-        1: [0, 0, 0],
-        2: [Math.PI / 2, 0, 0],
-        3: [Math.PI, 0, 0],
-        4: [-Math.PI / 2, 0, 0],
-        5: [0, Math.PI / 2, 0],
-        6: [0, -Math.PI / 2, 0]
+        5: [0, 0, 0], // Front face
+        6: [Math.PI, 0, 0], // Back face
+        3: [Math.PI / 2, 0, 0], // Top face
+        4: [-Math.PI / 2, 0, 0], // Bottom face
+        1: [0, -Math.PI / 2, 0], // Right face
+        2: [0, Math.PI / 2, 0] // Left face
       };
     case 8:
       return {

@@ -6,14 +6,23 @@ import { DieButton } from '../DieButton';
 import { RollButton } from '../RollButton';
 import { useDieRoll } from '../../hooks/useDieRoll';
 
+// const diceOptions = [
+//   { label: 'D4', url: 'models/D4.glb', sides: 4 },
+//   { label: 'D6', url: 'models/D6.glb', sides: 6 },
+//   { label: 'D8', url: 'models/D8.glb', sides: 8 },
+//   { label: 'D10', url: 'models/D10.glb', sides: 10 },
+//   { label: 'D100', url: 'models/D100.glb', sides: 10 },
+//   { label: 'D12', url: 'models/D12.glb', sides: 12 },
+//   { label: 'D20', url: 'models/D20.glb', sides: 20 }
+// ];
 const diceOptions = [
-  { label: 'D4', url: 'models/D4.glb', sides: 4 },
-  { label: 'D6', url: 'models/D6.glb', sides: 6 },
-  { label: 'D8', url: 'models/D8.glb', sides: 8 },
-  { label: 'D10', url: 'models/D10.glb', sides: 10 },
-  { label: 'D100', url: 'models/D100.glb', sides: 10 },
-  { label: 'D12', url: 'models/D12.glb', sides: 12 },
-  { label: 'D20', url: 'models/D20.glb', sides: 20 }
+  { label: 'D4', sides: 4 },
+  { label: 'D6', sides: 6 },
+  { label: 'D8', sides: 8 },
+  { label: 'D10', sides: 10 },
+  { label: 'D100', sides: 10 },
+  { label: 'D12', sides: 12 },
+  { label: 'D20', sides: 20 }
 ];
 
 export function RollArea() {
@@ -39,7 +48,7 @@ export function RollArea() {
       <div className="w-full h-[400px] flex flex-col items-center">
         <Canvas>
           <ambientLight intensity={3} />
-          <Dice url={selectedDie.url} rotation={rotation} isRolling={isRolling} />
+          <Dice rotation={rotation} isRolling={isRolling} />
           <OrbitControls enableZoom />
         </Canvas>
         <RollButton onRoll={handleRoll} />

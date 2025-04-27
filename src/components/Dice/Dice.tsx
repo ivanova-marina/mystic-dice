@@ -1,17 +1,19 @@
-import { useGLTF } from '@react-three/drei';
+// import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { createD6 } from './dice-shapes/createD6';
 
 interface DiceProps {
-  url: string;
+  // url: string;
   rotation?: [number, number, number];
   animationSpeed?: number;
   isRolling: boolean;
 }
-export function Dice({ url, rotation = [0, 0, 0], animationSpeed = 0.5, isRolling }: DiceProps) {
+export function Dice({ rotation = [0, 0, 0], animationSpeed = 0.5, isRolling }: DiceProps) {
   const dieRef = useRef<THREE.Mesh>(null);
   const currentRotation = useRef<[number, number, number]>([0, 0, 0]);
+  const die = useRef<THREE.Mesh>(createD6());
 
   useFrame(() => {
     if (dieRef.current) {
@@ -29,11 +31,18 @@ export function Dice({ url, rotation = [0, 0, 0], animationSpeed = 0.5, isRollin
     }
   });
 
-  const { scene } = useGLTF(url);
+  useEffect(() => {
+    if (dieRef.current) {
+      dieRef.current.geometry = die.current.geometry;
+      dieRef.current.material = die.current.material;
+    }
+  }, []);
+
+  // const { scene } = useGLTF(url);
 
   return (
     <mesh ref={dieRef}>
-      <primitive object={scene} />;
+      <primitive object={die.current} />;
     </mesh>
   );
 }

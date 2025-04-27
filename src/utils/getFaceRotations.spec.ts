@@ -15,12 +15,12 @@ describe('getFaceRotations', () => {
   it('returns correct rotations for d6', () => {
     const rotations = getFaceRotations(6);
     expect(rotations).toEqual({
-      1: [0, 0, 0],
-      2: [Math.PI / 2, 0, 0],
-      3: [Math.PI, 0, 0],
+      5: [0, 0, 0],
+      6: [Math.PI, 0, 0],
+      3: [Math.PI / 2, 0, 0],
       4: [-Math.PI / 2, 0, 0],
-      5: [0, Math.PI / 2, 0],
-      6: [0, -Math.PI / 2, 0]
+      1: [0, -Math.PI / 2, 0],
+      2: [0, Math.PI / 2, 0]
     });
   });
 

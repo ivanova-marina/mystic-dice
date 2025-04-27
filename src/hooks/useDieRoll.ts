@@ -10,6 +10,9 @@ export function useDieRoll(sides: number) {
     const faceRotations = getFaceRotations(sides);
     const finalRotation = faceRotations[rolledValue];
 
+    console.log('rolledValue: ', rolledValue);
+    console.log('Sides: ', getFaceRotations(sides));
+
     setRotation(finalRotation);
     setResult(rolledValue);
   };
