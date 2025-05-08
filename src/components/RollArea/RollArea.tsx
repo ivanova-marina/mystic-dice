@@ -46,9 +46,12 @@ export function RollArea() {
         ))}
       </div>
       <div className="w-full h-[400px] flex flex-col items-center">
-        <Canvas>
-          <ambientLight intensity={3} />
-          <Dice rotation={rotation} isRolling={isRolling} />
+        <Canvas shadows>
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+          <pointLight position={[-5, 5, 5]} intensity={0.8} />
+          <spotLight position={[5, 10, 5]} intensity={1} angle={0.3} penumbra={0.5} castShadow />
+          <Dice dieSides={selectedDie.sides} rotation={rotation} isRolling={isRolling} />
           <OrbitControls enableZoom />
         </Canvas>
         <RollButton onRoll={handleRoll} />

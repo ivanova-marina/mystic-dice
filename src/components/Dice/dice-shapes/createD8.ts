@@ -1,17 +1,17 @@
 import * as THREE from 'three';
 
-export function createD6() {
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
+export function createD8() {
+  const geometry = new THREE.OctahedronGeometry(1, 0);
   const materials = [];
 
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 8; i++) {
     const canvas = document.createElement('canvas');
     canvas.width = 256;
     canvas.height = 256;
     const context = canvas.getContext('2d');
     if (context) {
       context.fillStyle = 'white';
-      context.fillRect(0, 0, canvas.width, canvas.height);
+      context?.fillRect(0, 0, canvas.width, canvas.height);
       context.fillStyle = 'black';
       context.font = 'bold 128px Arial';
       context.textAlign = 'center';

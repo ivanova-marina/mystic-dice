@@ -19,42 +19,42 @@ type Story = StoryObj<typeof Dice>;
 
 export const DFour: Story = {
   args: {
-    url: 'models/D4.glb'
+    dieSides: 4
   }
 };
 
 export const DSix: Story = {
   args: {
-    url: 'models/D6.glb'
+    dieSides: 6
   }
 };
 
 export const DEight: Story = {
   args: {
-    url: 'models/D8.glb'
+    dieSides: 8
   }
 };
 
 export const DTen: Story = {
   args: {
-    url: 'models/D10.glb'
+    dieSides: 10
   }
 };
 
 export const DOneHundred: Story = {
   args: {
-    url: 'models/D100.glb'
+    dieSides: 10
   }
 };
 
 export const DTwelve: Story = {
   args: {
-    url: 'models/D12.glb'
+    dieSides: 12
   }
 };
 
 export const DTwenty: Story = {
   args: {
-    url: 'models/D20.glb'
+    dieSides: 20
   }
 };

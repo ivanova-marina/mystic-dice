@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 
-export function createD6() {
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
+export function createD4() {
+  const geometry = new THREE.TetrahedronGeometry(1, 0);
   const materials = [];
 
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 4; i++) {
     const canvas = document.createElement('canvas');
     canvas.width = 256;
     canvas.height = 256;
@@ -18,6 +18,7 @@ export function createD6() {
       context.textBaseline = 'middle';
       context.fillText(i.toString(), canvas.width / 2, canvas.height / 2);
     }
+
     const texture = new THREE.CanvasTexture(canvas);
     materials.push(new THREE.MeshBasicMaterial({ map: texture }));
   }

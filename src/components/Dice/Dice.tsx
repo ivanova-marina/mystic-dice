@@ -1,19 +1,55 @@
 // import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 import { createD6 } from './dice-shapes/createD6';
+import { createD4 } from './dice-shapes/createD4';
+import { createD8 } from './dice-shapes/createD8';
 
 interface DiceProps {
-  // url: string;
+  dieSides: number;
   rotation?: [number, number, number];
   animationSpeed?: number;
   isRolling: boolean;
 }
-export function Dice({ rotation = [0, 0, 0], animationSpeed = 0.5, isRolling }: DiceProps) {
+export function Dice({
+  dieSides,
+  rotation = [0, 0, 0],
+  animationSpeed = 0.5,
+  isRolling
+}: DiceProps) {
   const dieRef = useRef<THREE.Mesh>(null);
   const currentRotation = useRef<[number, number, number]>([0, 0, 0]);
-  const die = useRef<THREE.Mesh>(createD6());
+
+  const createDie = useCallback(() => {
+    switch (dieSides) {
+      case 4:
+        return createD4();
+      case 6:
+        return createD6();
+      case 8:
+        return createD8();
+
+      default:
+        throw new Error('Unsupported die type');
+    }
+  }, [dieSides]);
+
+  useEffect(() => {
+    if (dieRef.current) {
+      const newDie = createDie();
+      console.log('New Die Geometry:', newDie.geometry);
+      console.log('New Die Material:', newDie.material);
+      console.log(
+        'Number of Materials:',
+        Array.isArray(newDie.material) ? newDie.material.length : 1
+      );
+      dieRef.current.geometry = newDie.geometry;
+      dieRef.current.material = newDie.material;
+      // const wireframeMaterial = new THREE.MeshBasicMaterial({ wireframe: true, color: 'red' });
+      // dieRef.current.material = wireframeMaterial;
+    }
+  }, [createDie, dieSides]);
 
   useFrame(() => {
     if (dieRef.current) {
@@ -31,18 +67,7 @@ export function Dice({ rotation = [0, 0, 0], animationSpeed = 0.5, isRolling }: 
     }
   });
 
-  useEffect(() => {
-    if (dieRef.current) {
-      dieRef.current.geometry = die.current.geometry;
-      dieRef.current.material = die.current.material;
-    }
-  }, []);
-
   // const { scene } = useGLTF(url);
 
-  return (
-    <mesh ref={dieRef}>
-      <primitive object={die.current} />;
-    </mesh>
-  );
+  return <mesh ref={dieRef} castShadow receiveShadow></mesh>;
 }
