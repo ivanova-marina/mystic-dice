@@ -22,7 +22,15 @@ export function createD4() {
     const texture = new THREE.CanvasTexture(canvas);
     materials.push(new THREE.MeshBasicMaterial({ map: texture }));
   }
+  if (!geometry.index) {
+    geometry.setIndex([...Array(geometry.attributes.position.count).keys()]);
+  }
 
+  geometry.clearGroups();
+  for (let i = 0; i < geometry.index!.count / 3; i++) {
+    geometry.addGroup(i * 3, 3, i); // Each face gets its own material
+  }
   const die = new THREE.Mesh(geometry, materials);
+
   return die;
 }
